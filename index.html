@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>India Overview</title>
   <link rel="icon" href="spongebob.png" type="image/png">
   <style>
     :root{font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color-scheme: light}
@@ -5,13 +10,12 @@
     header{background:#0b5cff;color:#fff;padding:1.25rem 1rem}
     .container{max-width:900px;margin:1rem auto;padding:0 1rem}
     nav a{color:#fff;margin-right:1rem;text-decoration:none;font-weight:600}
-
     /* NOTE: cleaned up original comments that were inside this <style> block
        (converted stray text into this CSS comment). The author noted a small
        amount of AI assistance for formatting; content is otherwise unchanged. */
-
     h1,h2,h3{color:#0b3a8a}
-    /* small helper for a short meaning displayed to the right of headings */
+    /* Make all headings and the small "meaning" text bold and italic without changing color */
+    h1, h2, h3, .meaning { font-weight: 700; font-style: italic; }
     .heading-row{display:flex;align-items:baseline;gap:0.5rem;justify-content:space-between}
     .heading-row h1,.heading-row h2,.heading-row h3{margin:0;padding:0}
     .meaning{color:#666;font-size:0.95rem;font-style:italic;margin-left:1rem;white-space:nowrap}
@@ -24,23 +28,40 @@
     @media(min-width:800px){.grid{grid-template-columns:1fr 320px}}
     .toc{font-size:.95rem;padding:.5rem;border-radius:6px;background:#fff;border:1px solid #eef}
     a.anchor{color:#0055ff;text-decoration:none}
+    #language-switcher{background:#f8f9fb;padding:0.6rem;text-align:center;border-bottom:1px solid #e6e9ef}
+    #language-switcher button{margin:0 0.4rem;padding:0.45rem 0.9rem;cursor:pointer;border-radius:6px;border:1px solid #cfd8e3;background:#fff;color:#0b3a8a;font-weight:600}
+    #language-switcher button.active{background:#0b5cff;color:#fff;border-color:#0b5cff}
+    /* Utility to hide non-active language spans by default (we'll show en initially) */
+    [data-lang]{display:none}
+    [data-lang="en"]{display:inline}
+    /* Ensure block-level elements with data-lang behave correctly */
+    p [data-lang], li [data-lang], h1 [data-lang], h2 [data-lang], h3 [data-lang], .meaning [data-lang] {display:inline}
+    /* For list items where entire li is language-specific, allow block display */
+    li > [data-lang]{display:inline}
   </style>
- 
 </head>
 <body>
+
+  <!-- Language Switcher at the very top -->
+  <div id="language-switcher" role="navigation" aria-label="Language switcher">
+    <button id="btn-en" class="active" onclick="setLanguage('en')">English</button>
+    <button id="btn-bn" onclick="setLanguage('bn')">বাংলা (Bengali)</button>
+    <button id="btn-hi" onclick="setLanguage('hi')">हिन्दी (Hindi)</button>
+  </div>
+
   <header>
     <div class="container">
       <nav aria-label="Main">
-        <a href="#overview">Overview</a>
-        <a href="#history">History</a>
-        <a href="#geography">Geography</a>
-        <a href="#demographics">Demographics</a>
-        <a href="#culture">Culture</a>
-        <a href="#economy">Economy</a>
-        <a href="#government">Government</a>
-        <a href="#tourism">Tourism</a>
-        <a href="#science">Science & Tech</a>
-        <a href="#references">References</a>
+        <a href="#overview"><span data-lang="en">Overview</span><span data-lang="bn">ওভারভিউ</span><span data-lang="hi">ओवरव्यू</span></a>
+        <a href="#history"><span data-lang="en">History</span><span data-lang="bn">ইতিহাস</span><span data-lang="hi">इतिहास</span></a>
+        <a href="#geography"><span data-lang="en">Geography</span><span data-lang="bn">ভূগোল</span><span data-lang="hi">भूगोल</span></a>
+        <a href="#demographics"><span data-lang="en">Demographics</span><span data-lang="bn">জনসংখ্যাতাত্ত্বিক</span><span data-lang="hi">जनसांख्यिकी</span></a>
+        <a href="#culture"><span data-lang="en">Culture</span><span data-lang="bn">সংস্কৃতি</span><span data-lang="hi">संस्कृति</span></a>
+        <a href="#economy"><span data-lang="en">Economy</span><span data-lang="bn">অর্থনীতি</span><span data-lang="hi">अर्थव्यवस्था</span></a>
+        <a href="#government"><span data-lang="en">Government</span><span data-lang="bn">সরকার</span><span data-lang="hi">सरकार</span></a>
+        <a href="#tourism"><span data-lang="en">Tourism</span><span data-lang="bn">পর্যটন</span><span data-lang="hi">पर्यटन</span></a>
+        <a href="#science"><span data-lang="en">Science & Tech</span><span data-lang="bn">বিজ্ঞান ও প্রযুক্তি</span><span data-lang="hi">विज्ञान और तकनीक</span></a>
+        <a href="#references"><span data-lang="en">References</span><span data-lang="bn">তথ্যসূত্র</span><span data-lang="hi">संदर्भ</span></a>
       </nav>
     </div>
   </header>
@@ -48,119 +69,384 @@
   <main class="container">
     <article class="grid">
       <div>
+        <!-- Overview -->
         <section id="overview">
-          <div class="heading-row"><h1><i><b>India</b></i></h1><span class="meaning">A country in South Asia — brief summary below</span></div>
-          <p class="lead">India, officially the Republic of India, is a country in South Asia. It is the world's most populous democracy and the second-most populous country after China. India is known for its diverse cultures, languages, religions, landscapes, and long history.</p>
-          <p class="muted">Quick facts: Capital — New Delhi; Largest city — Mumbai; Official languages — Hindi and English (associate official); Currency — Indian Rupee (INR); Area — ~3.287 million km²; Population — ~1.4 billion (2025 est.).</p>
+          <div class="heading-row">
+            <h1>
+              <span data-lang="en"><i><b>India</b></i></span>
+              <span data-lang="bn"><i><b>ভারত</b></i></span>
+              <span data-lang="hi"><i><b>भारत</b></i></span>
+            </h1>
+            <span class="meaning">
+              <span data-lang="en">A country in South Asia — brief summary below</span>
+              <span data-lang="bn">দক্ষিণ এশিয়ার একটি দেশ — সংক্ষিপ্ত সারসংক্ষেপ নিচে</span>
+              <span data-lang="hi">दक्षिण एशिया का एक देश — संक्षिप্ত सारांश नीचे</span>
+            </span>
+          </div>
+          <p class="lead">
+            <span data-lang="en">India, officially the Republic of India, is a country in South Asia. It is the world's most populous democracy and the second-most populous country after China. India is known for its diverse cultures, languages, religions, landscapes, and long history.</span>
+            <span data-lang="bn">ভারত, আনুষ্ঠানিকভাবে ভারতের প্রজাতন্ত্র, দক্ষিণ এশিয়ার একটি দেশ। এটি বিশ্বের সবচেয়ে জনবহুল গণতন্ত্র এবং চীনের পরে দ্বিতীয় সর্বাধিক জনবহুল দেশ। ভারত তার বৈচিত্র্যময় সংস্কৃতি, ভাষা, ধর্ম, ভূদৃশ্য এবং দীর্ঘ ইতিহাসের জন্য পরিচিত।</span>
+            <span data-lang="hi">भारत, आधिकारिक रूप से भारत गणराज्य, दक्षिण एशिया का एक देश है। यह दुनिया का सबसे अधिक जनसंख्या वाला लोकतंत्र है और चीन के बाद दूसरा सबसे अधिक जनसंख्या वाला देश है। भारत अपनी विविध संस्कृतियों, भाषाओं, धर्मों, परिदृश्यों और लंबे इतिहास के लिए जाना जाता है।</span>
+          </p>
+          <p class="muted">
+            <span data-lang="en">Quick facts: Capital — New Delhi; Largest city — Mumbai; Official languages — Hindi and English (associate official); Currency — Indian Rupee (INR); Area — ~3.287 million km²; Population — ~1.4 billion (2025 est.).</span>
+            <span data-lang="bn">দ্রুত তথ্য: রাজধানী — নয়াদিল্লি; বৃহত্তম শহর — মুম্বাই; সরকারি ভাষা — হিন্দি এবং ইংরেজি (সহযোগী সরকারি); মুদ্রা — ভারতীয় রুপি (INR); এলাকা — ~৩.২৮৭ মিলিয়ন কিমি²; জনসংখ্যা — ~১.৪ বিলিয়ন (২০২৫ অনুমান)।</span>
+            <span data-lang="hi">त्वरित तथ्य: राजधानी — नई दिल्ली; सबसे बड़ा शहर — मुंबई; आधिकारिक भाषाएँ — हिंदी और अंग्रेज़ी (सहायक आधिकारिक); मुद्रा — भारतीय रुपया (INR); क्षेत्रफल — ~3.287 मिलियन किमी²; जनसंख्या — ~1.4 अरब (2025 अनुमान)।</span>
+          </p>
         </section>
 
+        <!-- History -->
         <section id="history">
-          <div class="heading-row"><h2><i><b>History</b></i></h2><span class="meaning">Events and eras that shaped the nation</span></div>
-          <p>India's history stretches back millennia. The Indus Valley Civilization (c. 2600–1900 BCE) was one of the world's earliest urban cultures. Over centuries, the subcontinent saw the rise and fall of many empires and kingdoms, including the Maurya and Gupta Empires, the Delhi Sultanate, and the Mughal Empire. From the 18th century, large parts of India came under British colonial rule, culminating in the British Raj. India gained independence in 1947 and became a democratic republic in 1950.</p>
-          <div class="heading-row"><h3>Major periods</h3><span class="meaning">Key historical eras listed</span></div>
+          <div class="heading-row">
+            <h2>
+              <span data-lang="en"><i><b>History</b></i></span>
+              <span data-lang="bn"><i><b>ইতিহাস</b></i></span>
+              <span data-lang="hi"><i><b>इतिहास</b></i></span>
+            </h2>
+            <span class="meaning">
+              <span data-lang="en">Events and eras that shaped the nation</span>
+              <span data-lang="bn">ঘটনা ও যুগ যা জাতিকে গঠন করেছে</span>
+              <span data-lang="hi">घटनाएँ और युग जिन्होंने राष्ट्र को आकार दिया</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">India's history stretches back millennia. The Indus Valley Civilization (c. 2600–1900 BCE) was one of the world's earliest urban cultures. Over centuries, the subcontinent saw the rise and fall of many empires and kingdoms, including the Maurya and Gupta Empires, the Delhi Sultanate, and the Mughal Empire. From the 18th century, large parts of India came under British colonial rule, culminating in the British Raj. India gained independence in 1947 and became a democratic republic in 1950.</span>
+            <span data-lang="bn">ভারতের ইতিহাস হাজার বছরেরও বেশি পুরোনো। সিন্ধু সভ্যতা (প্রায় ২৬০০–১৯০০ খ্রিস্টপূর্ব) বিশ্বের প্রথম শহুরে সংস্কৃতিগুলোর মধ্যে একটি ছিল। শতাব্দীর পর শতাব্দী ধরে উপমহাদেশে বহু সাম্রাজ্য ও রাজ্যের উত্থান-পতন ঘটেছে, যার মধ্যে মৌর্য ও গুপ্ত সাম্রাজ্য, দিল্লি সুলতানাত, এবং মুঘল সাম্রাজ্য উল্লেখযোগ্য। ১৮শ শতাব্দী থেকে ভারতের বড় অংশ ব্রিটিশ উপনিবেশিক শাসনের অধীনে চলে আসে, যা ব্রিটিশ রাজে পরিণত হয়। ভারত ১৯৪৭ সালে স্বাধীনতা লাভ করে এবং ১৯৫০ সালে একটি গণতান্ত্রিক প্রজাতন্ত্র হয়।</span>
+            <span data-lang="hi">भारत का इतिहास सहस्राब्दियों पुराना है। सिंधु घाटी सभ्यता (लगभग 2600–1900 ईसा पूर्व) दुनिया की प्रारंभिक शहरी संस्कृतियों में से एक थी। सदियों के दौरान, उपमहाद्वीप में कई साम्राज्यों और राजवंशों का उदय और पतन हुआ, जिनमें मौर्य और गुप्त साम्राज्य, दिल्ली सल्तनत और मुगल साम्राज्य शामिल हैं। 18वीं सदी से भारत के बड़े हिस्से ब्रिटिश उपनिवेश शासन के अधीन आ गए, जो बाद में ब्रिटिश राज में परिणत हुआ। भारत ने 1947 में स्वतंत्रता प्राप्त की और 1950 में एक लोकतांत्रिक गणराज्य बना।</span>
+          </p>
+
+          <div class="heading-row">
+            <h3>
+              <span data-lang="en"><i><b>Major periods</b></i></span>
+              <span data-lang="bn"><i><b>প্রধান সময়কাল</b></i></span>
+              <span data-lang="hi"><i><b>प्रमुख काल</b></i></span>
+            </h3>
+            <span class="meaning">
+              <span data-lang="en">Key historical eras listed</span>
+              <span data-lang="bn">কী ঐতিহাসিক যুগগুলো তালিকাভুক্ত</span>
+              <span data-lang="hi">मुख्य ऐतिहासिक युग सूचीबद्ध</span>
+            </span>
+          </div>
           <ul>
-            <li>Ancient (Indus Valley, Vedic period, Mahajanapadas)</li>
-            <li>Classical (Maurya, Gupta)</li>
-            <li>Medieval (Regional kingdoms, Delhi Sultanate, Vijayanagara, Mughal)</li>
-            <li>Colonial (European trade, British East India Company, British Raj)</li>
-            <li>Modern (Independence movement, partition 1947, post-independence development)</li>
+            <li><span data-lang="en">Ancient (Indus Valley, Vedic period, Mahajanapadas)</span><span data-lang="bn">প্রাচীন (সিন্ধু সভ্যতা, বৈদিক যুগ, মহাজনপদ)</span><span data-lang="hi">प्राचीन (सिंधु घाटी, वैदिक काल, महाजनपद)</span></li>
+            <li><span data-lang="en">Classical (Maurya, Gupta)</span><span data-lang="bn">শ্রেষ্ঠ (মৌর্য, গুপ্ত)</span><span data-lang="hi">शास्त्रीय (मौर्य, गुप्त)</span></li>
+            <li><span data-lang="en">Medieval (Regional kingdoms, Delhi Sultanate, Vijayanagara, Mughal)</span><span data-lang="bn">মধ্যযুগীয় (আঞ্চলিক রাজ্য, দিল্লি সুলতানাত, বিজয়নগর, মুঘল)</span><span data-lang="hi">मध्यकालीन (क्षेत्रीय राज्य, दिल्ली सल्तनत, विजयनगर, मुगल)</span></li>
+            <li><span data-lang="en">Colonial (European trade, British East India Company, British Raj)</span><span data-lang="bn">উপনিবেশিক (ইউরোপীয় বাণিজ্য, ব্রিটিশ ইস্ট ইন্ডিয়া কোম্পানি, ব্রিটিশ রাজ)</span><span data-lang="hi">औपनिवेशिक (यूरोपीय व्यापार, ब्रिटिश ईस्ट इंडिया कंपनी, ब्रिटिश राज)</span></li>
+            <li><span data-lang="en">Modern (Independence movement, partition 1947, post-independence development)</span><span data-lang="bn">আধুনিক (স্বাধীনতা আন্দোলন, ১৯৪৭ সালের বিভাজন, স্বাধীনতার পর উন্নয়ন)</span><span data-lang="hi">आधुनिक (स्वतंत्रता आंदोलन, 1947 का विभाजन, स्वतंत्रता के बाद का विकास)</span></li>
           </ul>
         </section>
 
+        <!-- Geography -->
         <section id="geography">
-          <div class="heading-row"><h2><i><b>geography</b></i></h2><span class="meaning">Physical features, borders and regions</span></div>
-          <p>India occupies most of the Indian subcontinent. It shares land borders with Pakistan, China, Nepal, Bhutan, Bangladesh, and Myanmar, and maritime borders with Sri Lanka and the Maldives. The geography is varied: the Himalayan mountain range in the north, fertile plains of the Ganges and Indus, the Thar Desert in the west, and tropical regions in the south.</p>
-          <div class="heading-row"><h3><i><b>climate</b></i></h3><span class="meaning">Weather patterns and the monsoon</span></div>
-          <p>India has multiple climate zones — from alpine in the Himalayas to tropical in the south. The monsoon (June–September) is a defining seasonal phenomenon, bringing most of the country's annual rainfall and shaping agriculture and livelihoods.</p>
+          <div class="heading-row">
+            <h2>
+              <span data-lang="en"><i><b>geography</b></i></span>
+              <span data-lang="bn"><i><b>ভূগোল</b></i></span>
+              <span data-lang="hi"><i><b>भूगोल</b></i></span>
+            </h2>
+            <span class="meaning">
+              <span data-lang="en">Physical features, borders and regions</span>
+              <span data-lang="bn">ভৌত বৈশিষ্ট্য, সীমান্ত এবং অঞ্চল</span>
+              <span data-lang="hi">भौतिक विशेषताएँ, सीमाएँ और क्षेत्र</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">India occupies most of the Indian subcontinent. It shares land borders with Pakistan, China, Nepal, Bhutan, Bangladesh, and Myanmar, and maritime borders with Sri Lanka and the Maldives. The geography is varied: the Himalayan mountain range in the north, fertile plains of the Ganges and Indus, the Thar Desert in the west, and tropical regions in the south.</span>
+            <span data-lang="bn">ভারত ভারতীয় উপমহাদেশের বেশিরভাগ অংশ দখল করে। এটি পাকিস্তান, চীন, নেপাল, ভুটান, বাংলাদেশ এবং মিয়ানমারের সাথে স্থলসীমা ভাগ করে এবং শ্রীলঙ্কা ও মালদ্বীপের সাথে সামুদ্রিক সীমা রয়েছে। ভূগোল বৈচিত্র্যময়: উত্তরে হিমালয় পর্বতমালা, গঙ্গা ও সিন্ধুর উর্বর সমভূমি, পশ্চিমে থার মরুভূমি, এবং দক্ষিণে উষ্ণমণ্ডলীয় অঞ্চল।</span>
+            <span data-lang="hi">भारत भारतीय उपमहाद्वीप के अधिकांश हिस्से पर विस्तृत है। इसकी भूमि सीमाएँ पाकिस्तान, चीन, नेपाल, भूटान, बांग्लादेश और म्यांमार से मिलती हैं, और समुद्री सीमाएँ श्रीलंका और मालदीव के साथ हैं। भूगोल विविध है: उत्तर में हिमालय पर्वत श्रृंखला, गंगा और सिन्धु की उपजाऊ मैदानें, पश्चिम में थार रेगिस्तान, और दक्षिण में उष्णकटिबंधीय क्षेत्र।</span>
+          </p>
+
+          <div class="heading-row">
+            <h3>
+              <span data-lang="en"><i><b>climate</b></i></span>
+              <span data-lang="bn"><i><b>আবহাওয়া</b></i></span>
+              <span data-lang="hi"><i><b>जलवायु</b></i></span>
+            </h3>
+            <span class="meaning">
+              <span data-lang="en">Weather patterns and the monsoon</span>
+              <span data-lang="bn">আবহাওয়ার ধরণ এবং বর্ষা</span>
+              <span data-lang="hi">मौसम के पैटर्न और मानसून</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">India has multiple climate zones — from alpine in the Himalayas to tropical in the south. The monsoon (June–September) is a defining seasonal phenomenon, bringing most of the country's annual rainfall and shaping agriculture and livelihoods.</span>
+            <span data-lang="bn">ভারতে একাধিক জলবায়ু অঞ্চল রয়েছে — হিমালয়ের আলপাইন থেকে দক্ষিণের উষ্ণমণ্ডলীয় পর্যন্ত। বর্ষা (জুন–সেপ্টেম্বর) একটি নির্ধারণকারী মৌসুমী ঘটনা, যা দেশের বার্ষিক বৃষ্টিপাতের বড় অংশ নিয়ে আসে এবং কৃষি ও জীবিকা গঠনে গুরুত্বপূর্ণ ভূমিকা রাখে।</span>
+            <span data-lang="hi">भारत में कई जलवायु क्षेत्र हैं — हिमालय में अल्पाइन से लेकर दक्षिण में उष्णकटिबंधीय तक। मानसून (जून–सितंबर) एक निर्णायक मौसमी घटना है, जो देश की वार्षिक वर्षा का अधिकांश भाग लाती है और कृषि व आजीविका को आकार देती है।</span>
+          </p>
         </section>
 
-        <section id="demographics"> 
-          <div class="heading-row"><h2><i><b>demographics</b></i></h2><span class="meaning">Population, languages and religions</span></div>
-          <p>India is extremely diverse ethnically, linguistically, and religiously. Major religions include Hinduism (majority), Islam, Christianity, Sikhism, Buddhism, Jainism, and many tribal beliefs. India has hundreds of languages; the Constitution recognizes several scheduled languages, and Hindi and English are used for official purposes.</p>
-          <div class="heading-row"><h3><i><b>Population trends</b></i></h3><span class="meaning">Growth, age structure and urbanisation</span></div>
+        <!-- Demographics -->
+        <section id="demographics">
+          <div class="heading-row">
+            <h2>
+              <span data-lang="en"><i><b>demographics</b></i></span>
+              <span data-lang="bn"><i><b>জনসংখ্যাতাত্ত্বিক</b></i></span>
+              <span data-lang="hi"><i><b>जनसांख्यिकी</b></i></span>
+            </h2>
+            <span class="meaning">
+              <span data-lang="en">Population, languages and religions</span>
+              <span data-lang="bn">জনসংখ্যা, ভাষা এবং ধর্ম</span>
+              <span data-lang="hi">जनसंख्या, भाषाएँ और धर्म</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">India is extremely diverse ethnically, linguistically, and religiously. Major religions include Hinduism (majority), Islam, Christianity, Sikhism, Buddhism, Jainism, and many tribal beliefs. India has hundreds of languages; the Constitution recognizes several scheduled languages, and Hindi and English are used for official purposes.</span>
+            <span data-lang="bn">ভারত জাতিগত, ভাষাগত এবং ধর্মীয়ভাবে অত্যন্ত বৈচিত্র্যময়। প্রধান ধর্মগুলোর মধ্যে রয়েছে হিন্দুধর্ম (বৃহত্তর অংশ), ইসলাম, খ্রিস্টধর্ম, শিখধর্ম, বৌদ্ধধর্ম, জৈনধর্ম এবং বহু উপজাতীয় বিশ্বাস। ভারতের শত শত ভাষা রয়েছে; সংবিধান কয়েকটি নির্ধারিত ভাষাকে স্বীকৃতি দেয়, এবং হিন্দি ও ইংরেজি সরকারি কাজে ব্যবহৃত হয়।</span>
+            <span data-lang="hi">भारत जातीय, भाषाई और धार्मिक रूप से अत्यंत विविध है। प्रमुख धर्मों में हिंदू धर्म (बहुमत), इस्लाम, ईसाई धर्म, सिख धर्म, बौद्ध धर्म, जैन धर्म और कई जनजातीय विश्वास शामिल हैं। भारत में सैकड़ों भाषाएँ हैं; संविधान कई अनुसूचित भाषाओं को मान्यता देता है, और हिंदी व अंग्रेज़ी आधिकारिक प्रयोजनों के लिए उपयोग की जाती हैं।</span>
+          </p>
+
+          <div class="heading-row">
+            <h3>
+              <span data-lang="en"><i><b>Population trends</b></i></span>
+              <span data-lang="bn"><i><b>জনসংখ্যা প্রবণতা</b></i></span>
+              <span data-lang="hi"><i><b>जनसंख्या प्रवृत्तियाँ</b></i></span>
+            </h3>
+            <span class="meaning">
+              <span data-lang="en">Growth, age structure and urbanisation</span>
+              <span data-lang="bn">বৃদ্ধি, বয়স কাঠামো এবং নগরায়ন</span>
+              <span data-lang="hi">विकास, आयु संरचना और शहरीकरण</span>
+            </span>
+          </div>
           <ul>
-            <li>Rapid population growth in the 20th century, slowing in the 21st.</li>
-            <li>Large youth population; median age rising slowly as fertility declines.</li>
-            <li>High urbanization with continuing significant rural population.</li>
+            <li><span data-lang="en">Rapid population growth in the 20th century, slowing in the 21st.</span><span data-lang="bn">২০শ শতকে দ্রুত জনসংখ্যা বৃদ্ধি, ২১শ শতকে ধীরগতি।</span><span data-lang="hi">20वीं सदी में तेज़ जनसंख्या वृद्धि, 21वीं सदी में धीमी हुई।</span></li>
+            <li><span data-lang="en">Large youth population; median age rising slowly as fertility declines.</span><span data-lang="bn">বড় যুব জনসংখ্যা; উর্বরতা কমার সঙ্গে সঙ্গে মধ্যবয়স ধীরে ধীরে বাড়ছে।</span><span data-lang="hi">बड़ी युवा आबादी; प्रजनन दर घटने के साथ मध्य आयु धीरे-धीरे बढ़ रही है।</span></li>
+            <li><span data-lang="en">High urbanization with continuing significant rural population.</span><span data-lang="bn">উচ্চ নগরায়ন থাকলেও উল্লেখযোগ্য গ্রামীণ জনসংখ্যা অব্যাহত রয়েছে।</span><span data-lang="hi">उच्च शहरीकरण के साथ महत्वपूर्ण ग्रामीण आबादी बनी हुई है।</span></li>
           </ul>
         </section>
 
-        <section id="Culture">
-          <div class="heading-row"><h2><i><b>Culture</b></i></h2><span class="meaning">Traditions, arts, cuisine and festivals</span></div>
-          <p>Indian culture is a mosaic of traditions, languages, religions, cuisines, arts, music, dance forms, and festivals. Classical music (Hindustani and Carnatic), various dance styles (Bharatanatyam, Kathak, Odissi), and film industries (especially Bollywood) are globally influential.</p>
-          <div class="heading-row"><h3><i><b>Festivals</b></i></h3><span class="meaning">Major religious and regional celebrations</span></div>
+        <!-- Culture -->
+        <section id="culture">
+          <div class="heading-row">
+            <h2>
+              <span data-lang="en"><i><b>Culture</b></i></span>
+              <span data-lang="bn"><i><b>সংস্কৃতি</b></i></span>
+              <span data-lang="hi"><i><b>संस्कृति</b></i></span>
+            </h2>
+            <span class="meaning">
+              <span data-lang="en">Traditions, arts, cuisine and festivals</span>
+              <span data-lang="bn">প্রথা, শিল্প, খাদ্য ও উৎসব</span>
+              <span data-lang="hi">परंपराएँ, कला, व्यंजन और त्योहार</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">Indian culture is a mosaic of traditions, languages, religions, cuisines, arts, music, dance forms, and festivals. Classical music (Hindustani and Carnatic), various dance styles (Bharatanatyam, Kathak, Odissi), and film industries (especially Bollywood) are globally influential.</span>
+            <span data-lang="bn">ভারতীয় সংস্কৃতি হল প্রথা, ভাষা, ধর্ম, খাদ্য, শিল্প, সঙ্গীত, নৃত্যশৈলী এবং উৎসবের এক মিশ্রণ। শাস্ত্রীয় সঙ্গীত (হিন্দুস্তানি ও কর্ণাটক), বিভিন্ন নৃত্যশৈলী (ভারতনাট্যম, কাথক, ওডিসি), এবং চলচ্চিত্র শিল্প (বিশেষত বলিউড) বিশ্বব্যাপী প্রভাবশালী।</span>
+            <span data-lang="hi">भारतीय संस्कृति परंपराओं, भाषाओं, धर्मों, व्यंजनों, कलाओं, संगीत, नृत्य रूपों और त्योहारों का एक मोज़ेक है। शास्त्रीय संगीत (हिंदुस्तानी और कर्नाटिक), विभिन्न नृत्य शैलियाँ (भरतनाट्यम, कथक, ओडिसी), और फिल्म उद्योग (विशेषकर बॉलीवुड) वैश्विक रूप से प्रभावशाली हैं।</span>
+          </p>
+
+          <div class="heading-row">
+            <h3>
+              <span data-lang="en"><i><b>Festivals</b></i></span>
+              <span data-lang="bn"><i><b>উৎসব</b></i></span>
+              <span data-lang="hi"><i><b>त्योहार</b></i></span>
+            </h3>
+            <span class="meaning">
+              <span data-lang="en">Major religious and regional celebrations</span>
+              <span data-lang="bn">প্রধান ধর্মীয় ও আঞ্চলিক উদযাপন</span>
+              <span data-lang="hi">प्रमुख धार्मिक और क्षेत्रीय उत्सव</span>
+            </span>
+          </div>
           <ul>
-            <li>Diwali, Holi, Eid, Christmas, Navaratri, Pongal, Onam, Gurpurab, and many regional festivals.</li>
+            <li><span data-lang="en">Diwali, Holi, Eid, Christmas, Navaratri, Pongal, Onam, Gurpurab, and many regional festivals.</span><span data-lang="bn">দীপাবলি, হোলি, ঈদ, বড়দিন, নবরাত্রি, পঙ্গল, ওনম, গুরুপরব, এবং বহু আঞ্চলিক উৎসব।</span><span data-lang="hi">दिवाली, होली, ईद, क्रिसमस, नवरात्रि, पोंगल, ओणम, गुरपुरब, और कई क्षेत्रीय त्योहार।</span></li>
           </ul>
         </section>
 
+        <!-- Economy -->
         <section id="economy">
-          <div class="heading-row"><h2><i><b>Economy </b></i></h2><span class="meaning">Economic sectors and growth drivers</span></div>
-          <p>India has a mixed economy with agriculture, manufacturing, and services. In recent decades, the services sector (IT, finance, business process outsourcing) has driven much of the growth. India is one of the world's largest economies by nominal GDP and PPP. Key challenges include income inequality, infrastructure needs, and job creation for a large workforce.</p>
-          <div class="heading-row"><h3>Key sectors</h3><span class="meaning">Industries important to the economy</span></div>
+          <div class="heading-row">
+            <h2>
+              <span data-lang="en"><i><b>Economy</b></i></span>
+              <span data-lang="bn"><i><b>অর্থনীতি</b></i></span>
+              <span data-lang="hi"><i><b>अर्थव्यवस्था</b></i></span>
+            </h2>
+            <span class="meaning">
+              <span data-lang="en">Economic sectors and growth drivers</span>
+              <span data-lang="bn">অর্থনৈতিক খাত এবং বৃদ্ধির চালক</span>
+              <span data-lang="hi">आर्थिक क्षेत्र और विकास चालक</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">India has a mixed economy with agriculture, manufacturing, and services. In recent decades, the services sector (IT, finance, business process outsourcing) has driven much of the growth. India is one of the world's largest economies by nominal GDP and PPP. Key challenges include income inequality, infrastructure needs, and job creation for a large workforce.</span>
+            <span data-lang="bn">ভারতের একটি মিশ্র অর্থনীতি রয়েছে যার মধ্যে কৃষি, উৎপাদন এবং সেবা খাত রয়েছে। সাম্প্রতিক দশকগুলোতে সেবা খাত (আইটি, অর্থ, ব্যবসা প্রক্রিয়া আউটসোর্সিং) অনেক বৃদ্ধি চালিত করেছে। নামমাত্র জিডিপি এবং ক্রয়ক্ষমতা সমতা (PPP) অনুযায়ী ভারত বিশ্বের অন্যতম বৃহত্তম অর্থনীতি। প্রধান চ্যালেঞ্জগুলোর মধ্যে আয় বৈষম্য, অবকাঠামো প্রয়োজন এবং বৃহৎ কর্মশক্তির জন্য কর্মসংস্থান সৃষ্টি অন্তর্ভুক্ত।</span>
+            <span data-lang="hi">भारत की अर्थव्यवस्था मिश्रित है जिसमें कृषि, विनिर्माण और सेवाएँ शामिल हैं। हाल के दशकों में, सेवा क्षेत्र (आईटी, वित्त, बिजनेस प्रोसेस आउटसोर्सिंग) ने अधिकांश विकास को प्रेरित किया है। नाममात्र GDP और PPP के हिसाब से भारत दुनिया की सबसे बड़ी अर्थव्यवस्थाओं में से एक है। प्रमुख चुनौतियों में आय असमानता, अवसंरचना की आवश्यकता और बड़ी कार्यबल के लिए रोजगार सृजन शामिल हैं।</span>
+          </p>
+
+          <div class="heading-row">
+            <h3>
+              <span data-lang="en"><i><b>Key sectors</b></i></span>
+              <span data-lang="bn"><i><b>প্রধান খাত</b></i></span>
+              <span data-lang="hi"><i><b>प्रमुख क्षेत्र</b></i></span>
+            </h3>
+            <span class="meaning">
+              <span data-lang="en">Industries important to the economy</span>
+              <span data-lang="bn">অর্থনীতির জন্য গুরুত্বপূর্ণ শিল্প</span>
+              <span data-lang="hi">अर्थव्यवस्था के लिए महत्वपूर्ण उद्योग</span>
+            </span>
+          </div>
           <ul>
-            <li>Information technology and software services</li>
-            <li>Pharmaceuticals and biotechnology</li>
-            <li>Agriculture and agribusiness</li>
-            <li>Manufacturing (automotive, textiles, steel)</li>
-            <li>Energy and renewables</li>
+            <li><span data-lang="en">Information technology and software services</span><span data-lang="bn">তথ্যপ্রযুক্তি এবং সফটওয়্যার সেবা</span><span data-lang="hi">सूचना प्रौद्योगिकी और सॉफ़्टवेयर सेवाएँ</span></li>
+            <li><span data-lang="en">Pharmaceuticals and biotechnology</span><span data-lang="bn">ফার্মাসিউটিক্যাল এবং বায়োটেকনোলজি</span><span data-lang="hi">फार्मास्यूटिकल्स और बायोटेक्नोलॉजी</span></li>
+            <li><span data-lang="en">Agriculture and agribusiness</span><span data-lang="bn">কৃষি এবং কৃষি ব্যবসা</span><span data-lang="hi">कृषि और कृषि व्यवसाय</span></li>
+            <li><span data-lang="en">Manufacturing (automotive, textiles, steel)</span><span data-lang="bn">উৎপাদন (অটোমোটিভ, বস্ত্র, ইস্পাত)</span><span data-lang="hi">उत्पादन (ऑटोमोटिव, वस्त्र, स्टील)</span></li>
+            <li><span data-lang="en">Energy and renewables</span><span data-lang="bn">শক্তি এবং নবায়নযোগ্য উৎস</span><span data-lang="hi">ऊर्जा और नवीकरणीय</span></li>
           </ul>
         </section>
 
+        <!-- Government -->
         <section id="government">
-          <div class="heading-row"><h2>Government and politics</h2><span class="meaning">How the country is governed</span></div>
-          <p>India is a federal parliamentary democratic republic. The President is the head of state and the Prime Minister is the head of government. India has a multi-party system, with the Parliament consisting of two houses: the Lok Sabha (House of the People) and the Rajya Sabha (Council of States).</p>
-          <div class="heading-row"><h3>Constitution</h3><span class="meaning">Founding legal document and principles</span></div>
-          <p>The Constitution of India (1950) establishes the framework for political principles, fundamental rights, directive principles, and federal structure. It is one of the longest constitutions in the world.</p>
+          <div class="heading-row">
+            <h2>
+              <span data-lang="en"><i><b>Government and politics</b></i></span>
+              <span data-lang="bn"><i><b>সরকার ও রাজনীতি</b></i></span>
+              <span data-lang="hi"><i><b>सरकार और राजनीति</b></i></span>
+            </h2>
+            <span class="meaning">
+              <span data-lang="en">How the country is governed</span>
+              <span data-lang="bn">কিভাবে দেশ শাসিত হয়</span>
+              <span data-lang="hi">देश का शासन कैसे होता है</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">India is a federal parliamentary democratic republic. The President is the head of state and the Prime Minister is the head of government. India has a multi-party system, with the Parliament consisting of two houses: the Lok Sabha (House of the People) and the Rajya Sabha (Council of States).</span>
+            <span data-lang="bn">ভারত একটি ফেডারেল সংসদীয় গণতান্ত্রিক প্রজাতন্ত্র। রাষ্ট্রপতি রাষ্ট্রপ্রধান এবং প্রধানমন্ত্রী সরকারপ্রধান। ভারতের বহু-পার্টি ব্যবস্থা রয়েছে, এবং সংসদ দুই কক্ষ নিয়ে গঠিত: লোকসভা (জনগণের সংসদ) এবং রাজ্যসভা (রাষ্ট্রপতি কাউন্সিল)।</span>
+            <span data-lang="hi">भारत एक संघीय संसदीय लोकतांत्रिक गणराज्य है। राष्ट्रपति राज्य के प्रमुख हैं और प्रधानमंत्री सरकार के प्रमुख हैं। भारत में बहु-पार्टी प्रणाली है, और संसद दो सदनों से मिलकर बनी है: लोक सभा (हाउस ऑफ द पीपल) और राज्य सभा (काउंसिल ऑफ स्टेट्स)।</span>
+          </p>
+
+          <div class="heading-row">
+            <h3>
+              <span data-lang="en"><i><b>Constitution</b></i></span>
+              <span data-lang="bn"><i><b>সংবিধান</b></i></span>
+              <span data-lang="hi"><i><b>संविधान</b></i></span>
+            </h3>
+            <span class="meaning">
+              <span data-lang="en">Founding legal document and principles</span>
+              <span data-lang="bn">প্রতিষ্ঠার আইনি দলিল এবং নীতিমালা</span>
+              <span data-lang="hi">स्थापना कानूनी दस्तावेज़ और सिद्धांत</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">The Constitution of India (1950) establishes the framework for political principles, fundamental rights, directive principles, and federal structure. It is one of the longest constitutions in the world.</span>
+            <span data-lang="bn">ভারতের সংবিধান (১৯৫০) রাজনৈতিক নীতিমালা, মৌলিক অধিকার, নির্দেশমূলক নীতিমালা এবং ফেডারেল কাঠামো নির্ধারণ করে। এটি বিশ্বের অন্যতম দীর্ঘতম সংবিধান।</span>
+            <span data-lang="hi">भारत का संविधान (1950) राजनीतिक सिद्धांतों, मौलिक अधिकारों, निर्देशात्मक सिद्धांतों और संघीय संरचना के लिए रूपरेखा स्थापित करता है। यह दुनिया के सबसे लंबे संविधानों में से एक है।</span>
+          </p>
         </section>
 
+        <!-- Tourism -->
         <section id="tourism">
-          <div class="heading-row"><h2>Tourism</h2><span class="meaning">Places and travel highlights</span></div>
-          <p>India attracts tourists to its historical monuments, cultural experiences, wildlife, hill stations, beaches, and spiritual sites. Popular destinations include the Taj Mahal (Agra), Jaipur and other cities of Rajasthan, Kerala backwaters, Goa beaches, Ladakh, and Varanasi.</p>
-          <div class="heading-row"><h3>Travel tips</h3><span class="meaning">Practical advice for visitors</span></div>
+          <div class="heading-row">
+            <h2>
+              <span data-lang="en"><i><b>Tourism</b></i></span>
+              <span data-lang="bn"><i><b>পর্যটন</b></i></span>
+              <span data-lang="hi"><i><b>पर्यटन</b></i></span>
+            </h2>
+            <span class="meaning">
+              <span data-lang="en">Places and travel highlights</span>
+              <span data-lang="bn">স্থান এবং ভ্রমণের প্রধান আকর্ষণ</span>
+              <span data-lang="hi">स्थल और यात्रा मुख्य आकर्षण</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">India attracts tourists to its historical monuments, cultural experiences, wildlife, hill stations, beaches, and spiritual sites. Popular destinations include the Taj Mahal (Agra), Jaipur and other cities of Rajasthan, Kerala backwaters, Goa beaches, Ladakh, and Varanasi.</span>
+            <span data-lang="bn">ভারত তার ঐতিহাসিক স্মৃতিস্তম্ভ, সাংস্কৃতিক অভিজ্ঞতা, বন্যপ্রাণী, হিল স্টেশন, সৈকত এবং আধ্যাত্মিক স্থানগুলোর জন্য পর্যটকদের আকর্ষণ করে। জনপ্রিয় গন্তব্যগুলোর মধ্যে রয়েছে তাজমহল (আগ্রা), জয়পুর ও রাজস্থানের অন্যান্য শহর, কেরালার ব্যাকওয়াটার, গোয়া সৈকত, লাদাখ এবং বারাণসী।</span>
+            <span data-lang="hi">भारत अपने ऐतिहासिक स्मारकों, सांस्कृतिक अनुभवों, वन्यजीव, हिल स्टेशन, समुद्र तटों और आध्यात्मिक स्थलों के लिए पर्यटकों को आकर्षित करता है। लोकप्रिय गंतव्य हैं ताज महल (आगरा), जयपुर और राजस्थान के अन्य शहर, केरल बैकवाटर्स, गोवा के समुद्र तट, लद्दाख और वाराणसी।</span>
+          </p>
+
+          <div class="heading-row">
+            <h3>
+              <span data-lang="en"><i><b>Travel tips</b></i></span>
+              <span data-lang="bn"><i><b>ভ্রমণ পরামর্শ</b></i></span>
+              <span data-lang="hi"><i><b>यात्रा सुझाव</b></i></span>
+            </h3>
+            <span class="meaning">
+              <span data-lang="en">Practical advice for visitors</span>
+              <span data-lang="bn">ভ্রমণকারীদের জন্য ব্যবহারিক পরামর্শ</span>
+              <span data-lang="hi">आगंतुकों के लिए व्यावहारिक सलाह</span>
+            </span>
+          </div>
           <ul>
-            <li>Plan around the monsoon if traveling to regions affected by heavy rains.</li>
-            <li>Use registered guides for heritage sites and national parks.</li>
-            <li>Respect local customs and dress codes at religious places.</li>
+            <li><span data-lang="en">Plan around the monsoon if traveling to regions affected by heavy rains.</span><span data-lang="bn">যদি ভারী বৃষ্টিপাত প্রভাবিত অঞ্চলে ভ্রমণ করেন তবে বর্ষার সময় পরিকল্পনা করুন।</span><span data-lang="hi">यदि भारी वर्षा प्रभावित क्षेत्रों में यात्रा कर रहे हैं तो मानसून के अनुसार योजना बनाएं।</span></li>
+            <li><span data-lang="en">Use registered guides for heritage sites and national parks.</span><span data-lang="bn">ঐতিহ্যবাহী স্থান এবং জাতীয় উদ্যানের জন্য নিবন্ধিত গাইড ব্যবহার করুন।</span><span data-lang="hi">हेरिटेज साइट्स और राष्ट्रीय उद्यानों के लिए पंजीकृत गाइड का उपयोग करें।</span></li>
+            <li><span data-lang="en">Respect local customs and dress codes at religious places.</span><span data-lang="bn">ধর্মীয় স্থানে স্থানীয় রীতিনীতি এবং পোশাক কোড সম্মান করুন।</span><span data-lang="hi">धार्मिक स्थानों पर स्थानीय रीति-रिवाज और ड्रेस कोड का सम्मान करें।</span></li>
           </ul>
         </section>
 
+        <!-- Science -->
         <section id="science">
-          <div class="heading-row"><h2>Science, technology & education</h2><span class="meaning">Research, space, IT and learning</span></div>
-          <p>India has a strong presence in science and technology, notable for its space program (ISRO), information technology exports, and an expanding research ecosystem in universities and institutes. Education is a priority, though access and quality vary across regions.</p>
+          <div class="heading-row">
+            <h2>
+              <span data-lang="en"><i><b>Science, technology & education</b></i></span>
+              <span data-lang="bn"><i><b>বিজ্ঞান, প্রযুক্তি ও শিক্ষা</b></i></span>
+              <span data-lang="hi"><i><b>विज्ञान, प्रौद्योगिकी और शिक्षा</b></i></span>
+            </h2>
+            <span class="meaning">
+              <span data-lang="en">Research, space, IT and learning</span>
+              <span data-lang="bn">গবেষণা, মহাকাশ, আইটি এবং শিক্ষা</span>
+              <span data-lang="hi">अनुसंधान, अंतरिक्ष, आईटी और शिक्षा</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">India has a strong presence in science and technology, notable for its space program (ISRO), information technology exports, and an expanding research ecosystem in universities and institutes. Education is a priority, though access and quality vary across regions.</span>
+            <span data-lang="bn">বিজ্ঞান ও প্রযুক্তিতে ভারতের শক্তিশালী উপস্থিতি রয়েছে, বিশেষত এর মহাকাশ কর্মসূচি (ISRO), তথ্যপ্রযুক্তি রপ্তানি, এবং বিশ্ববিদ্যালয় ও প্রতিষ্ঠানে বিস্তৃত গবেষণা পরিবেশের জন্য। শিক্ষা একটি অগ্রাধিকার, যদিও অঞ্চলভেদে প্রবেশাধিকার এবং গুণমান ভিন্ন।</span>
+            <span data-lang="hi">विज्ञान और प्रौद्योगिकी में भारत की मजबूत उपस्थिति है, विशेष रूप से इसका अंतरिक्ष कार्यक्रम (ISRO), सूचना प्रौद्योगिकी निर्यात, और विश्वविद्यालयों व संस्थानों में बढ़ता हुआ अनुसंधान पारिस्थितिकी तंत्र। शिक्षा एक प्राथमिकता है, हालांकि पहुँच और गुणवत्ता क्षेत्रों के अनुसार भिन्न है।</span>
+          </p>
         </section>
 
+        <!-- References -->
         <section id="references">
-          <div class="heading-row"><h2>References & further reading</h2><span class="meaning">Sources and places to learn more</span></div>
-          <p>This page is a summary. For more detailed and up-to-date information consult authoritative sources: Government of India websites, UNESCO, World Bank, academic texts, and reliable encyclopedias.</p>
+          <div class="heading-row">
+            <h2>
+              <span data-lang="en"><i><b>References & further reading</b></i></span>
+              <span data-lang="bn"><i><b>তথ্যসূত্র ও আরও পড়ার জন্য</b></i></span>
+              <span data-lang="hi"><i><b>संदर्भ और आगे पढ़ने के लिए</b></i></span>
+            </h2>
+            <span class="meaning">
+              <span data-lang="en">Sources and places to learn more</span>
+              <span data-lang="bn">তথ্যসূত্র এবং আরও জানার স্থান</span>
+              <span data-lang="hi">स्रोत और अधिक जानने के स्थान</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="en">This page is a summary. For more detailed and up-to-date information consult authoritative sources: Government of India websites, UNESCO, World Bank, academic texts, and reliable encyclopedias.</span>
+            <span data-lang="bn">এই পৃষ্ঠা একটি সারসংক্ষেপ। আরও বিস্তারিত এবং আপ-টু-ডেট তথ্যের জন্য কর্তৃপক্ষভিত্তিক সূত্র দেখুন: ভারতের সরকারি ওয়েবসাইট, ইউনেস্কো, ওয়ার্ল্ড ব্যাংক, একাডেমিক গ্রন্থ এবং নির্ভরযোগ্য বিশ্বকোষ।</span>
+            <span data-lang="hi">यह पृष्ठ एक सारांश है। अधिक विस्तृत और अद्यतन जानकारी के लिए प्राधिकृत स्रोतों से परामर्श करें: भारत सरकार की वेबसाइटें, UNESCO, वर्ल्ड बैंक, शैक्षणिक ग्रंथ और विश्वसनीय विश्वकोश।</span>
+          </p>
         </section>
       </div>
 
+      <!-- Aside / Table of contents and quick facts -->
       <aside>
         <div class="toc" aria-label="Table of contents">
-          <strong>Contents</strong>
+          <strong>
+            <span data-lang="en">Contents</span>
+            <span data-lang="bn">বিষয়বস্তু</span>
+            <span data-lang="hi">सामग्री</span>
+          </strong>
           <ol>
-            <li><a class="anchor" href="#overview">Overview</a></li>
-            <li><a class="anchor" href="#history">History</a></li>
-            <li><a class="anchor" href="#geography">Geography</a></li>
-            <li><a class="anchor" href="#demographics">Demographics</a></li>
-            <li><a class="anchor" href="#culture">Culture</a></li>
-            <li><a class="anchor" href="#economy">Economy</a></li>
-            <li><a class="anchor" href="#government">Government</a></li>
-            <li><a class="anchor" href="#tourism">Tourism</a></li>
-            <li><a class="anchor" href="#science">Science & Tech</a></li>
-            <li><a class="anchor" href="#references">References</a></li>
+            <li><a class="anchor" href="#overview"><span data-lang="en">Overview</span><span data-lang="bn">ওভারভিউ</span><span data-lang="hi">ओवरवিউ</span></a></li>
+            <li><a class="anchor" href="#history"><span data-lang="en">History</span><span data-lang="bn">ইতিহাস</span><span data-lang="hi">इतिहास</span></a></li>
+            <li><a class="anchor" href="#geography"><span data-lang="en">Geography</span><span data-lang="bn">ভূগোল</span><span data-lang="hi">भूगोल</span></a></li>
+            <li><a class="anchor" href="#demographics"><span data-lang="en">Demographics</span><span data-lang="bn">জনসংখ্যাতাত্ত্বিক</span><span data-lang="hi">जनसांख्यिकी</span></a></li>
+            <li><a class="anchor" href="#culture"><span data-lang="en">Culture</span><span data-lang="bn">সংস্কৃতি</span><span data-lang="hi">संस्कृति</span></a></li>
+            <li><a class="anchor" href="#economy"><span data-lang="en">Economy</span><span data-lang="bn">অর্থনীতি</span><span data-lang="hi">अर्थव्यवस्था</span></a></li>
+            <li><a class="anchor" href="#government"><span data-lang="en">Government</span><span data-lang="bn">সরকার</span><span data-lang="hi">सरकार</span></a></li>
+            <li><a class="anchor" href="#tourism"><span data-lang="en">Tourism</span><span data-lang="bn">পর্যটন</span><span data-lang="hi">पर्यटन</span></a></li>
+            <li><a class="anchor" href="#science"><span data-lang="en">Science & Tech</span><span data-lang="bn">বিজ্ঞান ও প্রযুক্তি</span><span data-lang="hi">विज्ञान और तकनीक</span></a></li>
+            <li><a class="anchor" href="#references"><span data-lang="en">References</span><span data-lang="bn">তথ্যসূত্র</span><span data-lang="hi">संदर्भ</span></a></li>
           </ol>
         </div>
 
-        <div style="margin-top:1rem;padding:.75rem;border-radius:6px;background:#9f2a2a;border:1px solid #eef">
-          <strong>Quick facts</strong>
+        <div style="margin-top:1rem;padding:.75rem;border-radius:6px;background:#9f2a2a;border:1px solid #eef;color:#fff">
+          <strong>
+            <span data-lang="en">Quick facts</span>
+            <span data-lang="bn">দ্রুত তথ্য</span>
+            <span data-lang="hi">त्वरित तथ्य</span>
+          </strong>
           <ul>
-            <li>Capital: New Delhi</li>
-            <li>Official languages: Hindi, English (associate)</li>
-            <li>Currency: Indian Rupee (INR)</li>
-            <li>Time zone: IST (UTC+5:30)</li>
-            <li>Internet TLD: .in</li>
+            <li><span data-lang="en">Capital: New Delhi</span><span data-lang="bn">রাজধানী: নয়াদিল্লি</span><span data-lang="hi">राजधानी: नई दिल्ली</span></li>
+            <li><span data-lang="en">Official languages: Hindi, English (associate)</span><span data-lang="bn">সরকারি ভাষা: হিন্দি, ইংরেজি (সহযোগী)</span><span data-lang="hi">आधिकारिक भाषाएँ: हिंदी, अंग्रेज़ी (सहायक)</span></li>
+            <li><span data-lang="en">Currency: Indian Rupee (INR)</span><span data-lang="bn">মুদ্রা: ভারতীয় রুপি (INR)</span><span data-lang="hi">मुद्रा: भारतीय रुपया (INR)</span></li>
+            <li><span data-lang="en">Time zone: IST (UTC+5:30)</span><span data-lang="bn">টাইম জোন: IST (UTC+5:30)</span><span data-lang="hi">समय क्षेत्र: IST (UTC+5:30)</span></li>
+            <li><span data-lang="en">Internet TLD: .in</span><span data-lang="bn">ইন্টারনেট TLD: .in</span><span data-lang="hi">इंटरनेट TLD: .in</span></li>
           </ul>
         </div>
       </aside>
@@ -169,9 +455,69 @@
 
   <footer>
     <div class="container">
-      <p>Created on Oct 10, 2025. This is a general overview of India made by Hitez Verma</p>
-      <b>2025 @ all rights reserved</b>
+      <p>
+        <span data-lang="en">Created on Oct 10, 2025. This is a general overview of India made by Hitez Verma</span>
+        <span data-lang="bn">তৈরি করা হয়েছে ১০ অক্টোবর, ২০২৫। এটি হিতেজ বর্মা দ্বারা তৈরি ভারতের একটি সাধারণ ওভারভিউ</span>
+        <span data-lang="hi">निर्मित: 10 अक्टूबर, 2025। यह हितेज वर्मा द्वारा बनाया गया भारत का सामान्य अवलोकन है</span>
+      </p>
+      <b>
+        <span data-lang="en">2025 @ all rights reserved</span>
+        <span data-lang="bn">2025 @ সর্বস্বত্ব সংরক্ষিত</span>
+        <span data-lang="hi">2025 @ सर्वाधिकार सुरक्षित</span>
+      </b>
     </div>
   </footer>
+
+  <script>
+    // Set initial language to English
+    (function(){
+      window.currentLang = 'en';
+    })();
+
+    function setLanguage(lang) {
+      // Update global
+      window.currentLang = lang || 'en';
+
+      // Show/hide all elements with data-lang
+      document.querySelectorAll('[data-lang]').forEach(function(el){
+        if (el.getAttribute('data-lang') === window.currentLang) {
+          // For inline elements, ensure they are visible
+          el.style.display = '';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+
+      // Update active button styles
+      document.getElementById('btn-en').classList.toggle('active', window.currentLang === 'en');
+      document.getElementById('btn-bn').classList.toggle('active', window.currentLang === 'bn');
+      document.getElementById('btn-hi').classList.toggle('active', window.currentLang === 'hi');
+
+      // Update html lang attribute for accessibility
+      if (window.currentLang === 'bn') {
+        document.documentElement.lang = 'bn';
+      } else if (window.currentLang === 'hi') {
+        document.documentElement.lang = 'hi';
+      } else {
+        document.documentElement.lang = 'en';
+      }
+    }
+
+    // Save preference on click
+    document.getElementById('language-switcher').addEventListener('click', function(e){
+      var btn = e.target;
+      if (btn && btn.tagName === 'BUTTON') {
+        try { sessionStorage.setItem('preferredLang', btn.id === 'btn-en' ? 'en' : (btn.id === 'btn-bn' ? 'bn' : 'hi')); } catch(e){}
+      }
+    });
+
+    // Restore preference if present
+    (function(){
+      try {
+        var pref = sessionStorage.getItem('preferredLang');
+        if (pref) setLanguage(pref);
+      } catch(e){}
+    })();
+  </script>
 </body>
 </html>
